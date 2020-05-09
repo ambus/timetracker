@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { environment } from 'src/environments/environment';
 import { CoreModule } from './modules/core/core.module';
+import { LayoutModule } from './modules/layout/layout.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CoreModule } from './modules/core/core.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    CoreModule
+    CoreModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
