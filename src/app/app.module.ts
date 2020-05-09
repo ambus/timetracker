@@ -7,6 +7,8 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 
 
 import { environment } from 'src/environments/environment';
@@ -17,6 +19,7 @@ import { environment } from 'src/environments/environment';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
