@@ -1,4 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+html,
 body {
-    margin: 0px;
+  height: 100%;
+}
+body {
+  margin: 0px;
+}
+
+.dark-theme {
+  background-color: #3f3f3f;
+  color: #dedede;
+}
+
+.timetracker {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  height: 100%;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+}
+
+.add-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 1rem;
 }
