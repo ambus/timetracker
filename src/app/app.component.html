@@ -2,4 +2,10 @@
 <ul>
   <li class="text" *ngFor="let note of notes$ | async">{{ note.title }}</li>
 </ul> -->
-<app-header> </app-header>
+<div class="timetracker dark-theme">
+  <app-header> </app-header>
+  <div class="main">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer></app-footer>
+</div>
