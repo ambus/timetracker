@@ -1,1 +1,42 @@
-<p>user-container works!</p>
+<div class="user-container">
+  <p-card
+    *ngIf="user$ | async as user"
+    header="Advanced Card"
+    subheader="Subheader"
+    [style]="{ width: '360px' }"
+    styleClass="ui-card-shadow"
+  >
+    <p-header> Hello {{ user.email }} </p-header>
+    ID: {{ user.uid }}
+    <p-footer>
+      <button
+        pButton
+        type="button"
+        label="Logout"
+        class="ui-button-raised"
+        (click)="logOut()"
+      ></button>
+    </p-footer>
+  </p-card>
+
+  <p-card
+    *ngIf="!(user$ | async)"
+    header="Access to your timeline"
+    [subheader]="errorMessages$ | async"
+    [style]="{ width: '360px' }"
+    styleClass="ui-card-shadow"
+  >
+    <!-- <p-header> Access to your timeline</p-header> -->
+    <!-- <span class="sub-title" *ngIf="errorMessages$ | async as errorMessage">{{errorMessage}}</span> -->
+    <div class="login-container" [formGroup]="loginForm"></div>
+    <p-footer>
+      <button
+        pButton
+        type="button"
+        label="Login"
+        class="ui-button-raised"
+        (click)="login()"
+      ></button>
+    </p-footer>
+  </p-card>
+</div>

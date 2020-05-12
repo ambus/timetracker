@@ -9,8 +9,6 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-
-
 import { environment } from 'src/environments/environment';
 import { CoreModule } from './modules/core/core.module';
 import { LayoutModule } from './modules/layout/layout.module';
