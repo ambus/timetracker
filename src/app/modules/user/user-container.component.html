@@ -1,21 +1,9 @@
 <div class="user-container">
-  <p-card
-    *ngIf="user$ | async as user"
-    header="Advanced Card"
-    subheader="Subheader"
-    [style]="{ width: '360px' }"
-    styleClass="ui-card-shadow"
-  >
+  <p-card *ngIf="user$ | async as user" header="Advanced Card" subheader="Subheader" [style]="{ width: '360px' }" styleClass="ui-card-shadow">
     <p-header> Hello {{ user.email }} </p-header>
     ID: {{ user.uid }}
     <p-footer>
-      <button
-        pButton
-        type="button"
-        label="Logout"
-        class="ui-button-raised"
-        (click)="logOut()"
-      ></button>
+      <button pButton type="button" label="Logout" class="ui-button-raised" (click)="logOut()"></button>
     </p-footer>
   </p-card>
 
@@ -26,36 +14,59 @@
     [style]="{ width: '360px' }"
     styleClass="ui-card-shadow"
   >
-    <!-- <p-header> Access to your timeline</p-header> -->
-    <!-- <span class="sub-title" *ngIf="errorMessages$ | async as errorMessage">{{errorMessage}}</span> -->
     <div class="login-container" [formGroup]="loginForm">
       <div class="ui-g ui-fluid">
         <div class="ui-g-12">
-          <div class="ui-inputgroup">
+          <div class="ui-inputgroup input-float-padding">
             <span class="ui-float-label">
-              <input id="float-input" type="text" size="30" pInputText required />
+              <input
+                id="float-input"
+                type="text"
+                size="30"
+                formControlName="email"
+                pInputText
+                required
+                [class.is-invalid]="loginForm.get('email').dirty && loginForm.get('email').touched"
+              />
               <label for="float-input">Email</label>
             </span>
           </div>
+          <div *ngIf="loginForm.get('email').dirty && loginForm.get('email').touched">
+            <small *ngIf="loginForm.get('email').invalid" class="text-danger">{{ getErrorMessage("email", "email") }}</small>
+          </div>
         </div>
         <div class="ui-g-12">
-          <div class="ui-inputgroup">
+          <div class="ui-inputgroup input-float-padding">
             <span class="ui-float-label">
-              <input id="float-input" type="password" size="30" pInputText required />
+              <input
+                id="float-input"
+                [type]="hide ? 'password' : 'text'"
+                size="30"
+                pInputText
+                required
+                formControlName="password"
+                [class.is-invalid]="loginForm.get('password').dirty && loginForm.get('password').touched"
+              />
               <label for="float-input">Password</label>
             </span>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-eye"
+              class="ui-button-warn"
+              (click)="hide = !hide"
+              pTooltip="{{ hide ? 'Hide password' : 'Show password' }}"
+              tooltipPosition="top"
+            ></button>
+          </div>
+          <div *ngIf="loginForm.get('password').dirty && loginForm.get('password').touched">
+            <small *ngIf="loginForm.get('password').invalid" class="text-danger">{{ getErrorMessage("password") }}</small>
           </div>
         </div>
       </div>
     </div>
     <p-footer>
-      <button
-        pButton
-        type="button"
-        label="Login"
-        class="ui-button-raised"
-        (click)="login()"
-      ></button>
+      <button pButton type="button" label="Login" class="ui-button-raised" (click)="login()"></button>
     </p-footer>
   </p-card>
 </div>

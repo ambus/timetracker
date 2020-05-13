@@ -6,6 +6,7 @@ import { IcoButtonComponent } from './layout/ico-button/ico-button.component';
 import { TooltipModule } from 'primeng/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
+import {InputTextModule} from 'primeng/inputtext';
 
 const SHARED_MODULES = [
   CommonModule,
@@ -14,6 +15,7 @@ const SHARED_MODULES = [
   TooltipModule,
   ReactiveFormsModule,
   CardModule,
+  InputTextModule
 ];
 const SHARED_COMPONENTS = [IcoButtonComponent];
 
