@@ -28,7 +28,26 @@
   >
     <!-- <p-header> Access to your timeline</p-header> -->
     <!-- <span class="sub-title" *ngIf="errorMessages$ | async as errorMessage">{{errorMessage}}</span> -->
-    <div class="login-container" [formGroup]="loginForm"></div>
+    <div class="login-container" [formGroup]="loginForm">
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12">
+          <div class="ui-inputgroup">
+            <span class="ui-float-label">
+              <input id="float-input" type="text" size="30" pInputText required />
+              <label for="float-input">Email</label>
+            </span>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-inputgroup">
+            <span class="ui-float-label">
+              <input id="float-input" type="password" size="30" pInputText required />
+              <label for="float-input">Password</label>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
     <p-footer>
       <button
         pButton
