@@ -65,8 +65,15 @@
         </div>
       </div>
     </div>
-    <p-footer>
+    <div>
       <button pButton type="button" label="Login" class="ui-button-raised" (click)="login()"></button>
+    </div>
+    <div class="orLine"><br />--------- OR ---------<br /><br /></div>
+    <div>
+      <button pButton type="button" label="Sign Up" class="ui-button-raised" (click)="signUp()"></button>
+    </div>
+    <p-footer>
+      <p-progressBar *ngIf="isLoading$ | async" mode="indeterminate" [style]="{ height: '4px' }"></p-progressBar>
     </p-footer>
   </p-card>
 </div>
