@@ -53,7 +53,7 @@ export class UserContainerComponent implements OnInit {
     this.afAuthService.logOutFirebase();
   }
 
-  public getErrorMessage(controlName: string, errorName: string): string {
+  public getErrorMessage(controlName: string, errorName?: string): string {
     const control = this.loginForm.get(controlName);
     return control.hasError('required')
       ? 'You must enter a value'

@@ -1,5 +1,5 @@
 <div class="user-container">
-  <p-card *ngIf="user$ | async as user" header="{{'Hello ' + user.email}}"  [style]="{ width: '360px' }" styleClass="ui-card-shadow">
+  <p-card *ngIf="user$ | async as user" header="{{ 'Hello ' + user.email }}" [style]="{ width: '360px' }" styleClass="ui-card-shadow">
     ID: {{ user.uid }}
     <p-footer>
       <button pButton type="button" label="Logout" class="ui-button-raised" (click)="logOut()"></button>
