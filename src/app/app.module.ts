@@ -12,10 +12,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { environment } from 'src/environments/environment';
 import { CoreModule } from './modules/core/core.module';
 import { LayoutModule } from './modules/layout/layout.module';
+import { UserInfoComponent } from './modules/user-info/user-info.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,
