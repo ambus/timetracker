@@ -1,26 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseAuthService } from '../core/firebase/firebase-auth.service';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-container',
   templateUrl: './user-container.component.html',
   styleUrls: ['./user-container.component.scss'],
 })
-export class UserContainerComponent implements OnInit {
+export class UserContainerComponent implements OnInit, OnDestroy {
   public errorMessages$ = this.afAuthService.authErrorMessages$;
   public user$ = this.afAuthService.user$;
   public isLoading$ = this.afAuthService.isLoading$;
   public loginForm: FormGroup;
   public hide = true;
+  public userSubscription: Subscription;
 
-  constructor(
-    private fb: FormBuilder,
-    private afAuthService: FirebaseAuthService
-  ) {}
+  constructor(private fb: FormBuilder, private afAuthService: FirebaseAuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.createLoginForm();
+
+    this.userSubscription = this.user$.subscribe((user) => {
+      this.router.navigate(['/reports']);
+    });
+  }
+
+  ngOnDestroy() {
+    this.userSubscription?.unsubscribe();
   }
 
   private createLoginForm() {
@@ -35,6 +43,7 @@ export class UserContainerComponent implements OnInit {
       this.afAuthService.signUpFirebase(this.loginForm.value);
     });
   }
+
   public login() {
     this.checkFormValidity(() => {
       this.afAuthService.loginFirebase(this.loginForm.value);
@@ -55,10 +64,6 @@ export class UserContainerComponent implements OnInit {
 
   public getErrorMessage(controlName: string, errorName?: string): string {
     const control = this.loginForm.get(controlName);
-    return control.hasError('required')
-      ? 'You must enter a value'
-      : control.hasError(errorName)
-      ? `Not a valid ${errorName}`
-      : '';
+    return control.hasError('required') ? 'You must enter a value' : control.hasError(errorName) ? `Not a valid ${errorName}` : '';
   }
 }
