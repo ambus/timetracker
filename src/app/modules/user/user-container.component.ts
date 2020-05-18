@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FirebaseAuthService } from '../core/firebase/firebase-auth.service';
-import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-user-container',
@@ -10,20 +10,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-container.component.scss'],
 })
 export class UserContainerComponent implements OnInit, OnDestroy {
-  public errorMessages$ = this.afAuthService.authErrorMessages$;
-  public user$ = this.afAuthService.user$;
-  public isLoading$ = this.afAuthService.isLoading$;
+  public errorMessages$ = this.authService.authErrorMessages$;
+  public user$ = this.authService.user$;
+  public isLoading$ = this.authService.isLoading$;
   public loginForm: FormGroup;
   public hide = true;
   public userSubscription: Subscription;
+  public production = true;
 
-  constructor(private fb: FormBuilder, private afAuthService: FirebaseAuthService, private router: Router) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.createLoginForm();
 
     this.userSubscription = this.user$.subscribe((user) => {
-      this.router.navigate(['/reports']);
+      if (user) {
+        this.router.navigate(['/reports']);
+      }
     });
   }
 
@@ -40,13 +43,13 @@ export class UserContainerComponent implements OnInit, OnDestroy {
 
   public signUp() {
     this.checkFormValidity(() => {
-      this.afAuthService.signUpFirebase(this.loginForm.value);
+      this.authService.signUpFirebase(this.loginForm.value);
     });
   }
 
   public login() {
     this.checkFormValidity(() => {
-      this.afAuthService.loginFirebase(this.loginForm.value);
+      this.authService.loginFirebase(this.loginForm.value);
     });
   }
 

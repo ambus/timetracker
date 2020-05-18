@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DynamicDialogConfig, DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
-import { FirebaseAuthService } from '../core/firebase/firebase-auth.service';
-import { tap } from 'rxjs/operators';
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AuthService } from '../core/auth.service';
 
 @Component({
@@ -23,5 +21,6 @@ export class UserInfoComponent implements OnInit {
 
   public logOut() {
     this.authService.logOutFirebase();
+    this.ref.close();
   }
 }

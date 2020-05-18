@@ -3,6 +3,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../shared/models/user';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { tap, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { LoginCredentials } from '../shared/models/login-credentials';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +16,7 @@ export class AuthService {
 
   private authState = null;
 
-  constructor(private afAuth: AngularFireAuth) {
+  constructor(private afAuth: AngularFireAuth, private router: Router) {
     this.isLoggedIn().subscribe((user) => (this.authState = user));
   }
 
@@ -40,6 +42,13 @@ export class AuthService {
     );
   }
 
+  public loginFirebase({ email, password }: LoginCredentials) {
+    this.isLoading$.next(true);
+    this.handleErrorOrSuccess(() => {
+      return this.afAuth.signInWithEmailAndPassword(email, password);
+    });
+  }
+
   public async getCurrentUserUid(): Promise<string> {
     const user = await this.afAuth.currentUser;
     return user.uid;
@@ -54,7 +63,21 @@ export class AuthService {
 
   public logOutFirebase() {
     this.isLoading$.next(true);
-    return this.afAuth.signOut();
+    return this.afAuth
+      .signOut()
+      .then(() => {
+        this.isLoading$.next(false);
+        this.user$.next(null);
+      })
+      .catch((e) => {
+        console.error(e);
+        this.isLoading$.next(false);
+
+        this.authErrorMessages$.next('Something is wrong when signing out!');
+      })
+      .finally(() => {
+        this.router.navigate(['/user']);
+      });
   }
 
   private handleErrorOrSuccess(cb: () => Promise<firebase.auth.UserCredential>) {
@@ -68,6 +91,7 @@ export class AuthService {
       user: { email, uid },
     } = userCredential;
     this.isLoading$.next(false);
+    this.user$.next({ email, uid });
   }
 
   private handleSignUpLoginError(error: { code: string; message: string }) {
