@@ -4,11 +4,13 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { IcoButtonComponent } from './layout/ico-button/ico-button.component';
 import { TooltipModule } from 'primeng/tooltip';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { DialogModule } from 'primeng/dialog';
 
 const SHARED_MODULES = [
   CommonModule,
@@ -20,6 +22,9 @@ const SHARED_MODULES = [
   InputTextModule,
   ProgressBarModule,
   DynamicDialogModule,
+  DropdownModule,
+  FormsModule,
+  DialogModule,
 ];
 const SHARED_COMPONENTS = [IcoButtonComponent];
 

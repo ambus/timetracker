@@ -1,1 +1,97 @@
-<p>reports-list works!</p>
+<p-dataView
+  #dv
+  [value]="reports"
+  [paginator]="true"
+  [rows]="3"
+  paginatorPosition="both"
+  filterBy="brand"
+  [sortField]="sortField"
+  [sortOrder]="sortOrder"
+  [alwaysShowPaginator]="true"
+>
+  <p-header>
+    <div class="ui-helper-clearfix">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-4">
+          <p-dropdown
+            [options]="sortOptions"
+            [(ngModel)]="sortKey"
+            placeholder="Sort By"
+            (onChange)="onSortChange($event)"
+            [style]="{ 'min-width': '140px' }"
+          ></p-dropdown>
+        </div>
+        <div class="ui-g-6 ui-md-4">
+          <div style="position: relative;">
+            <input type="search" pInputText placeholder="Search by brand" (input)="dv.filter($event.target.value)" />
+          </div>
+        </div>
+        <div class="ui-g-6 ui-md-4" style="text-align: right;">
+          <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+        </div>
+      </div>
+    </div>
+  </p-header>
+  <ng-template let-report pTemplate="listItem">
+    <div class="ui-g-12">
+      <div class="report-details">
+        <div>
+          <div class="ui-g">
+            <div class="report-row">
+              Id: <b>{{ report.id }}</b>
+            </div>
+            <div class="report-row">
+              Day: <b>{{ report.day }}</b>
+            </div>
+            <div class="report-row">
+              Time Sum: <b>{{ report.timeSum }}</b>
+            </div>
+            <div class="report-row">
+              Created: <b>{{ report.created_at | date: "yyyy-MM-dd  HH:mm" }}</b>
+            </div>
+            <div class="report-row">
+              Updated: <b>{{ report.updated_at | date: "yyyy-MM-dd  HH:mm" }}</b>
+            </div>
+          </div>
+        </div>
+        <button pButton type="button" icon="pi pi-search" (click)="selectReport($event, report)"></button>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template let-report pTemplate="gridItem">
+    <div style="padding: 0.5em;" class="ui-g-12 ui-md-3">
+      <p-panel [header]="report.day" [style]="{ 'text-align': 'center' }">
+        <div class="report-detail">{{ report.id }} - {{ report.day }}</div>
+        <hr class="ui-widget-content" style="border-top: 0;" />
+        <button pButton type="button" icon="pi pi-search" (click)="selectReport($event, report)" style="margin-top: 0;"></button>
+      </p-panel>
+    </div>
+  </ng-template>
+</p-dataView>
+
+<p-dialog
+  header="Report Details"
+  [(visible)]="displayDialog"
+  [responsive]="true"
+  showEffect="fade"
+  [modal]="true"
+  [style]="{ width: '300px' }"
+  (onAfterHide)="onDialogHide()"
+>
+  <div class="ui-g" *ngIf="selectedReport">
+    <div class="ui-g-4">id:</div>
+    <div class="ui-g-8">{{ selectedReport.id }}</div>
+
+    <div class="ui-g-4">day:</div>
+    <div class="ui-g-8">{{ selectedReport.day }}</div>
+
+    <div class="ui-g-4">time sum:</div>
+    <div class="ui-g-8">{{ selectedReport.timeSum }}</div>
+
+    <div class="ui-g-4">Created:</div>
+    <div class="ui-g-8">{{ selectedReport.created_at | date: "yyyy-MM-dd  HH:mm" }}</div>
+
+    <div class="ui-g-4">Updated:</div>
+    <div class="ui-g-8">{{ selectedReport.updated_at | date: "yyyy-MM-dd  HH:mm" }}</div>
+  </div>
+</p-dialog>
