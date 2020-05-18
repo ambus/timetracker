@@ -1,4 +1,4 @@
-<p-toolbar>
+<p-toolbar *ngIf="user$ | async">
   <div class="ui-toolbar-group-left">
     <app-ico-button icon="pi-user" (onClick)="openUserInfoDialog()" pTooltip="User Info" tooltipPosition="right"></app-ico-button>
   </div>

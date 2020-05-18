@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { UserInfoComponent } from '../../user-info/user-info.component';
+import { AuthService } from '../../core/auth.service';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
-  providers: [DialogService]
+  providers: [DialogService],
 })
 export class FooterComponent implements OnInit {
+  public user$ = this.authService.user$;
+
   ref: DynamicDialogRef;
-  constructor(public dialogService: DialogService) {}
+  constructor(public dialogService: DialogService, public authService: AuthService) {}
 
   ngOnInit(): void {}
 
