@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { first, tap } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { User } from '../../shared/models/user';
+import { LoginCredentials } from '../../shared/models/login-credentials';
 
 @Injectable({
   providedIn: 'root',
@@ -58,9 +60,7 @@ export class FirebaseAuthService {
       });
   }
 
-  private handleErrorOrSuccess(
-    cb: () => Promise<firebase.auth.UserCredential>
-  ) {
+  private handleErrorOrSuccess(cb: () => Promise<firebase.auth.UserCredential>) {
     cb()
       .then((data) => this.authenticalUser(data))
       .catch((e) => this.handleSignUpLoginError(e));
@@ -80,14 +80,4 @@ export class FirebaseAuthService {
     const errorMessage = error.message;
     this.authErrorMessages$.next(errorMessage);
   }
-}
-
-interface User {
-  email: string;
-  uid: string;
-}
-
-interface LoginCredentials {
-  email: string;
-  password: string;
 }
