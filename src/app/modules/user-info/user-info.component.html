@@ -1,1 +1,9 @@
-<p>user-info works!</p>
+<div class="user-info-container">
+  <div *ngIf="user$ | async as user">
+    <div class="header">{{ "Hello " + user.email }}</div>
+    <div class="body">ID: {{ user.uid }}</div>
+    <div class="footer">
+      <button pButton type="button" label="Logout" class="ui-button-raised" (click)="logOut()"></button>
+    </div>
+  </div>
+</div>
