@@ -58,10 +58,6 @@ export class UserContainerComponent implements OnInit, OnDestroy {
     }
   }
 
-  public logOut() {
-    this.afAuthService.logOutFirebase();
-  }
-
   public getErrorMessage(controlName: string, errorName?: string): string {
     const control = this.loginForm.get(controlName);
     return control.hasError('required') ? 'You must enter a value' : control.hasError(errorName) ? `Not a valid ${errorName}` : '';

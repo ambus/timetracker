@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 const SHARED_MODULES = [
   CommonModule,
@@ -18,6 +19,7 @@ const SHARED_MODULES = [
   CardModule,
   InputTextModule,
   ProgressBarModule,
+  DynamicDialogModule,
 ];
 const SHARED_COMPONENTS = [IcoButtonComponent];
 
