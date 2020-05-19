@@ -8,9 +8,10 @@ import { ReportsDetailsComponent } from './reports-details/reports-details.compo
 import { DataViewModule } from 'primeng/dataview';
 import { SharedModule } from '../shared/shared.module';
 import { PanelModule } from 'primeng/panel';
+import { VirtualScrollerModule } from 'primeng/virtualscroller';
 
 @NgModule({
   declarations: [ReportsListComponent, ReportsAddComponent, ReportsDetailsComponent],
-  imports: [CommonModule, ReportsRoutingModule, DataViewModule, SharedModule, PanelModule],
+  imports: [CommonModule, ReportsRoutingModule, DataViewModule, SharedModule, PanelModule, VirtualScrollerModule],
 })
 export class ReportsModule {}

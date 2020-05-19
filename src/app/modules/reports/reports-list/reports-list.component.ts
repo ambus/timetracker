@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Report } from '../../shared/models/report';
 
 @Component({
   selector: 'app-reports-list',
   templateUrl: './reports-list.component.html',
   styleUrls: ['./reports-list.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ReportsListComponent implements OnInit {
   reports: Report[] = [
@@ -53,8 +54,6 @@ export class ReportsListComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    // this.carService.getCarsLarge().then(cars => this.cars = cars);
-
     this.sortOptions = [
       { label: 'Newest First', value: '!created_at' },
       { label: 'Oldest First', value: 'created_at' },
