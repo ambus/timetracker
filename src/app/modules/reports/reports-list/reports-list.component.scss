@@ -45,6 +45,16 @@ cdk-virtual-scroll-viewport {
   width: 100%;
   height: 100%;
 }
+
+.reports-list .sort-container {
+  display: flex;
+  justify-content: left;
+}
+.reports-list .title-container {
+  display: flex;
+  align-items: center;
+  font-size: 1.4em;
+}
 .reports-list .ui-dataview {
   display: flex;
   flex-direction: column;
