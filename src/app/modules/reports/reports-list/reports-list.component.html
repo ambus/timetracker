@@ -21,13 +21,10 @@
         <div class="ui-g-12 report-details">
           <div class="ui-g">
             <div class="report-row">
-              Id: <b>{{ report.id }}</b>
-            </div>
-            <div class="report-row">
               Day: <b>{{ report.day }}</b>
             </div>
             <div class="report-row">
-              Time Sum: <b>{{ report.timeSum }}</b>
+              Project: <b>{{ report.project }} - </b>{{ report.time }}h
             </div>
             <div class="report-row">
               Created: <b>{{ report.created_at | date: "yyyy-MM-dd  HH:mm" }}</b>
@@ -59,14 +56,13 @@
     (onAfterHide)="onDialogHide()"
   >
     <div class="ui-g" *ngIf="selectedReport">
-      <div class="ui-g-4">id:</div>
-      <div class="ui-g-8">{{ selectedReport.id }}</div>
-
       <div class="ui-g-4">day:</div>
       <div class="ui-g-8">{{ selectedReport.day }}</div>
 
-      <div class="ui-g-4">time sum:</div>
-      <div class="ui-g-8">{{ selectedReport.timeSum }}</div>
+      <div class="ui-g-4">Project:</div>
+      <div class="ui-g-8">
+        <b>{{ selectedReport.project }} - </b>{{ selectedReport.time }}h
+      </div>
 
       <div class="ui-g-4">Created:</div>
       <div class="ui-g-8">{{ selectedReport.created_at | date: "yyyy-MM-dd  HH:mm" }}</div>

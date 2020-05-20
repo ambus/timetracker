@@ -12,30 +12,34 @@ export class ReportsListComponent implements OnInit {
     {
       id: 'sadfsadf',
       day: '2020-05-20',
-      timeSum: 8,
+      time: 8,
       created_at: 1589810564784,
       updated_at: 1589810564784,
+      project: 'sdfsdf',
     },
     {
       id: '2123123123',
       day: '2020-05-20',
-      timeSum: 8,
+      time: 8,
       created_at: 1589810564784,
       updated_at: 1589810564784,
+      project: 'sdfsdf',
     },
     {
       id: '21231231112223',
       day: '2020-05-20',
-      timeSum: 8,
+      time: 8,
       created_at: 1589810564784,
       updated_at: 1589810564784,
+      project: 'sdfsdf',
     },
     {
       id: 'sdfasdfsdfsdgg',
       day: '2020-05-20',
-      timeSum: 8,
+      time: 8,
       created_at: 1589810564784,
       updated_at: 1589810564784,
+      project: 'sdfsdf',
     },
   ];
 
