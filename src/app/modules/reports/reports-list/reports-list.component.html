@@ -7,7 +7,7 @@
             [options]="sortOptions"
             [(ngModel)]="sortKey"
             placeholder="Sort By"
-            (onChange)="onSortChange()"
+            (onChange)="onSortChange($event)"
             [style]="{ 'min-width': '140px' }"
           ></p-dropdown>
         </div>

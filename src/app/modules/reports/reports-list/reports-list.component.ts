@@ -19,25 +19,25 @@ export class ReportsListComponent implements OnInit {
     },
     {
       id: '2123123123',
-      day: '2020-05-20',
+      day: '2020-05-18',
       time: 8,
-      created_at: 1589810564784,
+      created_at: 1589810344784,
       updated_at: 1589810564784,
       project: 'sdfsdf',
     },
     {
       id: '21231231112223',
-      day: '2020-05-20',
+      day: '2020-05-19',
       time: 8,
-      created_at: 1589810564784,
+      created_at: 1589810774784,
       updated_at: 1589810564784,
       project: 'sdfsdf',
     },
     {
       id: 'sdfasdfsdfsdgg',
-      day: '2020-05-20',
+      day: '2020-05-21',
       time: 8,
-      created_at: 1589810564784,
+      created_at: 1589810994784,
       updated_at: 1589810564784,
       project: 'sdfsdf',
     },
@@ -81,6 +81,20 @@ export class ReportsListComponent implements OnInit {
       this.sortOrder = 1;
       this.sortField = value;
     }
+    this.sort();
+  }
+
+  sort(): void {
+    let reports = [...this.reports];
+    reports.sort((data1, data2) => {
+      let value1 = data1[this.sortField];
+      let value2 = data2[this.sortField];
+      let result = value1 < value2 ? -1 : value1 > value2 ? 1 : 0;
+
+      return this.sortOrder * result;
+    });
+
+    this.reports = reports;
   }
 
   onDialogHide() {
