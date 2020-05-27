@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from 'src/environments/environment';
 import { CoreModule } from './modules/core/core.module';
 import { LayoutModule } from './modules/layout/layout.module';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { LayoutModule } from './modules/layout/layout.module';
     AngularFireAuthModule,
     CoreModule,
     LayoutModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

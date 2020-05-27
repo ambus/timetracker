@@ -11,6 +11,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { DialogModule } from 'primeng/dialog';
+import { ToastModule } from 'primeng/toast';
 
 const SHARED_MODULES = [
   CommonModule,
@@ -25,6 +26,7 @@ const SHARED_MODULES = [
   DropdownModule,
   FormsModule,
   DialogModule,
+  ToastModule
 ];
 const SHARED_COMPONENTS = [IcoButtonComponent];
 
