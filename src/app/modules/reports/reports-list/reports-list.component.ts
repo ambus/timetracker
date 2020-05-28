@@ -96,8 +96,4 @@ export class ReportsListComponent implements OnInit {
 
     this.reports = reports;
   }
-
-  onDialogHide() {
-    this.selectedReport = null;
-  }
 }

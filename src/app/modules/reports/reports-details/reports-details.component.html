@@ -1,1 +1,25 @@
-<p>reports-details works!</p>
+<p-dialog
+  header="Report Details"
+  [(visible)]="displayDialog"
+  [responsive]="true"
+  showEffect="fade"
+  [modal]="true"
+  [style]="{ width: '300px' }"
+  (onAfterHide)="onDialogHide()"
+>
+  <div class="ui-g" *ngIf="selectedReport">
+    <div class="ui-g-4">day:</div>
+    <div class="ui-g-8">{{ selectedReport.day }}</div>
+
+    <div class="ui-g-4">Project:</div>
+    <div class="ui-g-8">
+      <b>{{ selectedReport.project }} - </b>{{ selectedReport.time }}h
+    </div>
+
+    <div class="ui-g-4">Created:</div>
+    <div class="ui-g-8">{{ selectedReport.created_at | date: "yyyy-MM-dd  HH:mm" }}</div>
+
+    <div class="ui-g-4">Updated:</div>
+    <div class="ui-g-8">{{ selectedReport.updated_at | date: "yyyy-MM-dd  HH:mm" }}</div>
+  </div>
+</p-dialog>
