@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore/firestore';
-import { AngularFirestoreCollection } from '@angular/fire/firestore/public_api';
-import { DocumentReference } from '@google-cloud/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Report } from '../shared/models/report';
@@ -27,9 +26,9 @@ export class DataService {
     );
   }
 
-  addReport(report: Report): Promise<DocumentReference<Report>> {
+  addReport(report: Report): Promise<DocumentReference> {
     const data: Report & TimeInfo = { ...report, created_at: this.timestamp, updated_at: this.timestamp };
-    return (this.getUserReportsCollection().add(data) as unknown) as Promise<DocumentReference<Report>>; //fix types from  angular firestore
+    return this.getUserReportsCollection().add(data); //fix types from  angular firestore
   }
 
   editReport(report: Report): Promise<void> {
