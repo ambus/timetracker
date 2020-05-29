@@ -1,0 +1,28 @@
+<div class="report-container" [formGroup]="reportForm">
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+      <div class="ui-inputgroup input-float-padding">
+        <span class="ui-float-label">
+          <p-calendar formControlName="day" [showIcon]="true" [touchUI]="true" [readonlyInput]="true"></p-calendar>
+          <label for="float-input">Day</label>
+        </span>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-inputgroup input-float-padding">
+        <span class="ui-float-label">
+          <input id="float-input" type="number" size="30" pInputText formControlName="time" />
+          <label for="float-input">Hours</label>
+        </span>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-inputgroup input-float-padding">
+        <span class="ui-float-label">
+          <input id="float-input" type="text" size="30" pInputText formControlName="project" />
+          <label for="float-input">Project</label>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

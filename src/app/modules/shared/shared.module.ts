@@ -26,7 +26,7 @@ const SHARED_MODULES = [
   DropdownModule,
   FormsModule,
   DialogModule,
-  ToastModule
+  ToastModule,
 ];
 const SHARED_COMPONENTS = [IcoButtonComponent];
 
