@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { UserInfoComponent } from '../../user-info/user-info.component';
 import { AuthService } from '../../core/auth.service';
+import { ReportsAddComponent } from '../../reports/reports-add/reports-add.component';
+import { Report } from '../../shared/models/report';
 
 @Component({
   selector: 'app-footer',
@@ -17,7 +19,15 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  clickTest(event): void {}
+  createNewReport(): void {
+    this.ref = this.dialogService.open(ReportsAddComponent, {
+      header: 'Create report',
+      width: '70%',
+      contentStyle: { 'max-height': '450px', overflow: 'auto' },
+    });
+
+    this.ref.onClose.subscribe((report: Report) => {});
+  }
 
   openUserInfoDialog(): void {
     this.ref = this.dialogService.open(UserInfoComponent, {

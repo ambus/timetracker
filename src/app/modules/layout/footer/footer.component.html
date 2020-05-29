@@ -3,6 +3,11 @@
     <app-ico-button icon="pi-user" (onClick)="openUserInfoDialog()" pTooltip="User Info" tooltipPosition="right"></app-ico-button>
   </div>
   <div class="ui-toolbar-group-right">
-    <app-ico-button icon="pi-calendar-plus" (onClick)="clickTest($event)" pTooltip="Add new time report" tooltipPosition="left"></app-ico-button>
+    <app-ico-button
+      icon="pi-calendar-plus"
+      (onClick)="createNewReport()"
+      pTooltip="Add new time report"
+      tooltipPosition="left"
+    ></app-ico-button>
   </div>
 </p-toolbar>
