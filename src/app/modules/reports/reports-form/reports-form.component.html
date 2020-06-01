@@ -3,7 +3,15 @@
     <div class="ui-g-12">
       <div class="ui-inputgroup input-float-padding">
         <span class="ui-float-label">
-          <p-calendar formControlName="day" [showIcon]="true" [touchUI]="true" [readonlyInput]="true"></p-calendar>
+          <p-calendar
+            formControlName="day"
+            [showIcon]="true"
+            [touchUI]="true"
+            [readonlyInput]="true"
+            [panelStyle]="dataPickerStyle"
+            [autoZIndex]="false"
+            dateFormat="dd.mm.yy (DD)"
+          ></p-calendar>
           <label for="float-input">Day</label>
         </span>
       </div>

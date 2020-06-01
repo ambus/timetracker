@@ -15,6 +15,10 @@ export class ReportsFormComponent implements OnInit {
   reportForm: FormGroup;
   test = new Date();
 
+  dataPickerStyle = {
+    'z-index': 1000,
+  } as const;
+
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
