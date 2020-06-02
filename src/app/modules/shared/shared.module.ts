@@ -12,6 +12,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 const SHARED_MODULES = [
   CommonModule,
@@ -27,6 +28,7 @@ const SHARED_MODULES = [
   FormsModule,
   DialogModule,
   ToastModule,
+  InputNumberModule,
 ];
 const SHARED_COMPONENTS = [IcoButtonComponent];
 
