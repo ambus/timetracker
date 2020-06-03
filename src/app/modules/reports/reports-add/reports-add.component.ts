@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, LOCALE_ID } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { DataService } from '../../core/data.service';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ReportsFormComponent } from '../reports-form/reports-form.component';
+import { Report } from '../../shared/models/report';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-reports-add',
@@ -21,15 +23,15 @@ export class ReportsAddComponent implements OnInit {
     private data: DataService,
     private messageService: MessageService,
     public ref: DynamicDialogRef,
-    public config: DynamicDialogConfig
+    public config: DynamicDialogConfig,
+    @Inject(LOCALE_ID) private locale: string
   ) {}
 
   ngOnInit(): void {}
 
-  onSaveReport(values) {
-    debugger;
+  onSaveReport(report: Report) {
     this.data
-      .addReport(values)
+      .addReport(report)
       .then((doc) => {
         this.router.navigate(['./reports']);
         this.messageService.add({ severity: 'success', summary: 'Add new report', detail: `Report ${doc.id} has been succeffully saved.` });
@@ -44,7 +46,9 @@ export class ReportsAddComponent implements OnInit {
   }
 
   saveReport() {
-    this.onSaveReport(this.reportForm.reportForm.value);
+    let reportToSave: any = this.reportForm.reportForm.value;
+    reportToSave.day = formatDate(reportToSave.day, 'yyyy-MM-dd', this.locale);
+    this.onSaveReport(reportToSave);
   }
 
   cancel() {
