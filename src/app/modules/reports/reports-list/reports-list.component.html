@@ -1,17 +1,8 @@
-<div class="reports-list">
-  <p-virtualScroller [value]="reports" [itemSize]="150">
+<div class="reports-list" *ngIf="reports$ | async as reports; else notFound">
+  <p-virtualScroller [value]="reports" [itemSize]="120">
     <p-header>
       <div class="ui-g">
-        <div class="ui-g-6 sort-container">
-          <p-dropdown
-            [options]="sortOptions"
-            [(ngModel)]="sortKey"
-            placeholder="Sort By"
-            (onChange)="onSortChange($event)"
-            [style]="{ 'min-width': '140px' }"
-          ></p-dropdown>
-        </div>
-        <div class="ui-g-6 title-container">
+        <div class="ui-g-12 title-container">
           Reports list
         </div>
       </div>
@@ -48,3 +39,7 @@
   </p-virtualScroller>
   <app-reports-details [selectedReport]="selectedReport" [displayDialog]="displayDialog"></app-reports-details>
 </div>
+
+<ng-template #notFound>
+  Either you have no reports;
+</ng-template>
