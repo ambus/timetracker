@@ -36,12 +36,4 @@ export class ReportsFormComponent implements OnInit {
       project: ['', Validators.required],
     });
   }
-
-  addReport() {
-    if (this.reportForm.valid) {
-      this.saveReport.emit(this.reportForm.value);
-    } else {
-      this.sendError.emit('plise fill all fields');
-    }
-  }
 }
