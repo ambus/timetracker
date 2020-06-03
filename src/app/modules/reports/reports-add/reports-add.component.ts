@@ -51,8 +51,4 @@ export class ReportsAddComponent implements OnInit {
     reportToSave.day = formatDate(reportToSave.day, 'yyyy-MM-dd', this.locale);
     this.onSaveReport(reportToSave);
   }
-
-  cancel() {
-    this.ref.close();
-  }
 }
