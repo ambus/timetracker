@@ -1,19 +1,32 @@
-<div class="ui-g" *ngIf="report">
-  <div class="ui-g-4">day:</div>
-  <div class="ui-g-8">{{ report.day }}</div>
+<ng-container *ngIf="report; else loadData">
+  <ng-container *ngIf="!isEdit; else editTemplate">
+    <div class="ui-g">
+      <div class="ui-g-4">day:</div>
+      <div class="ui-g-8">{{ report.day }}</div>
 
-  <div class="ui-g-4">Project:</div>
-  <div class="ui-g-8">
-    <b>{{ report.project }} - </b>{{ report.time }}h
-  </div>
+      <div class="ui-g-4">Project:</div>
+      <div class="ui-g-8">
+        <b>{{ report.project }} - </b>{{ report.time }}h
+      </div>
 
-  <div class="ui-g-4">Created:</div>
-  <div class="ui-g-8">{{ report.created_at | date: "yyyy-MM-dd  HH:mm" }}</div>
+      <div class="ui-g-4">Created:</div>
+      <div class="ui-g-8">{{ report.created_at | date: "yyyy-MM-dd  HH:mm" }}</div>
 
-  <div class="ui-g-4">Updated:</div>
-  <div class="ui-g-8">{{ report.updated_at | date: "yyyy-MM-dd  HH:mm" }}</div>
-</div>
-<div class="footer">
-  <button type="button" class="ui-button-raised" (click)="edit()" pButton icon="pi pi-pencil"></button>
-  <button type="button" class="ui-button-raised ui-button-warning" (click)="remove()" pButton icon="pi pi-trash"></button>
-</div>
+      <div class="ui-g-4">Updated:</div>
+      <div class="ui-g-8">{{ report.updated_at | date: "yyyy-MM-dd  HH:mm" }}</div>
+    </div>
+    <div class="footer">
+      <button type="button" class="ui-button-raised" (click)="edit()" pButton icon="pi pi-pencil"></button>
+      <button type="button" class="ui-button-raised ui-button-warning" (click)="remove()" pButton icon="pi pi-trash"></button>
+    </div>
+  </ng-container>
+  <ng-template #editTemplate>
+    <app-reports-form *ngIf="report" [report]="report"></app-reports-form>
+    <div class="footer">
+      <button type="button" (click)="saveReport()" pButton icon="pi pi-save" label="Save" class="ui-button-raised"></button>
+    </div>
+  </ng-template>
+</ng-container>
+<ng-template #loadData>
+  <p-progressBar mode="indeterminate"></p-progressBar>
+</ng-template>

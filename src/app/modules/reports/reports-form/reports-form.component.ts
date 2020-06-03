@@ -23,9 +23,8 @@ export class ReportsFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
-
     if (this.report) {
-      this.reportForm.patchValue(this.report);
+      this.reportForm.patchValue({ day: new Date(this.report.day), time: this.report.time, project: this.report.project });
     }
   }
 
