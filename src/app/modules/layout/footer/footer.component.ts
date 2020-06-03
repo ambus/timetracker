@@ -9,7 +9,7 @@ import { Report } from '../../shared/models/report';
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
-  providers: [DialogService],
+  providers: [DialogService, DynamicDialogRef],
 })
 export class FooterComponent implements OnInit {
   public user$ = this.authService.user$;

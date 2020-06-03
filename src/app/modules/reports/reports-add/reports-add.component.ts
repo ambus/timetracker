@@ -35,6 +35,7 @@ export class ReportsAddComponent implements OnInit {
       .then((doc) => {
         this.router.navigate(['./reports']);
         this.messageService.add({ severity: 'success', summary: 'Add new report', detail: `Report ${doc.id} has been succeffully saved.` });
+        this.ref.close();
       })
       .catch((e) => {
         this.errorMessages$.next('Something is wrong when adding to DB');
