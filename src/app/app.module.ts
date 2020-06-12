@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { CoreModule } from './modules/core/core.module';
 import { LayoutModule } from './modules/layout/layout.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { SharedModule } from './modules/shared/shared.module';
     CoreModule,
     LayoutModule,
     SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent],
